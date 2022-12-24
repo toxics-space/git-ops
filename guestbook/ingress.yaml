@@ -1,0 +1,30 @@
+# Instead of original Ingress use traefik because of middlewares and simple https
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: guestbook-ingress
+  namespace: guestbook
+spec:
+  # entryPoints:
+  #   - websecure
+  routes:
+    - kind: Rule
+      match: Host(`guestbook.toxics.space`)
+      priority: 1
+      middlewares:
+      - name: redirect-to-https
+      services:
+      - name: guestbook-ui
+        port: 80
+  tls:
+    certResolver: le
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-https
+  namespace: guestbook
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
