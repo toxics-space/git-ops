@@ -9,7 +9,7 @@ spec:
   #   - websecure
   routes:
     - kind: Rule
-      match: Host(`guestbook2.toxics.space`)
+      match: Host(`guestbook.toxics.space`)
       priority: 1
       middlewares:
       - name: redirect-to-https
