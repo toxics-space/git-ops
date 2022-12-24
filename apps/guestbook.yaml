@@ -11,3 +11,5 @@ spec:
     path: guestbook
   destination:
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
