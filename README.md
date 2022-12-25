@@ -18,4 +18,6 @@ Before using `argocd`
 kubectl config set-context --current --namespace=argocd
 
 argocd admin dashboard
+
+argocd app list
 ```
